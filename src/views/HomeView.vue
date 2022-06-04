@@ -1,18 +1,47 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="home_image">
+      <img alt="Image" src="" />
+    </div>
+    <HomeSectionVue
+      v-for="(data, index) in section_datas"
+      :key="data"
+      :sectionObj="data"
+      :index="index"
+    ></HomeSectionVue>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue"
+import HomeSectionVue from "@/components/HomeSection.vue"
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
+    HomeSectionVue,
+  },
+  data() {
+    return {
+      section_datas: [
+        {
+          title: "Explanation",
+          text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          image: "sample.jpg",
+        },
+        {
+          title: "How to use",
+          text: "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+          image: "sample.jpg",
+        },
+      ],
+    }
   },
 }
 </script>
+
+<style>
+.home_image {
+  height: 200px;
+  border: 1px gray solid;
+}
+</style>

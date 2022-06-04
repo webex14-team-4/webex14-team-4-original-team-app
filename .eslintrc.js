@@ -14,5 +14,7 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    // Vueのコンポ―メントの命名規則に違反したとき、警告を出すのみに変更する
+    "vue/multi-word-component-names": "warn",
   },
 }
