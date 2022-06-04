@@ -9,27 +9,36 @@
 -->
 
 <template>
+  <h1>マークダウンエディターの試作</h1>
+
   <form id="post-form">
     <div id="editor">
-      <textarea v-model="markdownText">ここに入力するよ</textarea>
+      <textarea
+        v-model="markdownText"
+        @input="compile"
+        placeholder="ここに入力するよ"
+      ></textarea>
     </div>
     <div id="preview">
-      <div v-html="compiledMarkdown"></div>
+      <div v-html="compiledText"></div>
     </div>
   </form>
 </template>
 <script>
-import marked from "marked"
+import { marked } from "marked"
 
 export default {
   name: "postForm",
   data() {
     return {
       markdownText: "",
+      compiledText: "",
     }
   },
-  computed: {
-    compiledMarkdown: () => marked(this.markdownText),
+  methods: {
+    compile() {
+      this.compiledText = marked(this.markdownText)
+    },
   },
 }
 </script>
