@@ -2,7 +2,7 @@
   <div class="login">
     <form class="login_form">
       <div class="login_id">
-        <div class="login_label">Login ID</div>
+        <div class="login_label">Name</div>
         <input type="text" placeholder="id" />
       </div>
       <div class="login_password">
@@ -10,7 +10,7 @@
         <input type="password" placeholder="password" />
       </div>
       <router-link to="/manager">
-        <input class="login_button" type="submit" value="Login" />
+        <input class="login_button" type="submit" value="SignUp" />
       </router-link>
     </form>
   </div>

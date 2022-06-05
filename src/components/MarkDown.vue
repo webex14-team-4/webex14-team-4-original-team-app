@@ -1,20 +1,19 @@
 <template>
-  <h1>記事作成</h1>
-
-  <form class="post_form">
-    <div class="editor">
+  <div class="markdown">
+    <div class="markdown_editor">
       <textarea v-model="markdownText" @input="compile"></textarea>
     </div>
-    <div class="preview">
+    <div class="markdown_preview">
       <div v-html="compiledText"></div>
     </div>
-  </form>
+  </div>
 </template>
+
 <script>
 import { marked } from "marked"
 
 export default {
-  name: "postForm",
+  name: "markDown",
   data() {
     return {
       markdownText: "# ここに入力するよ",
@@ -33,23 +32,23 @@ export default {
 </script>
 
 <style>
-.post_form {
+.markdown {
   display: flex;
   justify-content: space-between;
   min-height: 500px;
 }
-.editor {
+.markdown_editor {
   width: 50%;
   text-align: left;
 }
-.editor textarea {
+.markdown_editor textarea {
   resize: none;
   border: 1px solid gray;
   outline: none;
   min-width: 100%;
   min-height: 100%;
 }
-.preview {
+.markdown_preview {
   width: 45%;
   text-align: left;
 }
