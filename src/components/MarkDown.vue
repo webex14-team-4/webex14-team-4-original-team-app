@@ -11,22 +11,20 @@
 
 <script>
 import { marked } from "marked"
+import _ from "lodash"
 
 export default {
   name: "markDown",
   data() {
     return {
       markdownText: "# ここに入力するよ",
-      compiledText: "",
+      compiledText: marked("# ここに入力するよ"),
     }
   },
   methods: {
-    compile() {
+    compile: _.debounce(function () {
       this.compiledText = marked(this.markdownText)
-    },
-  },
-  created() {
-    this.compile()
+    }, 300),
   },
 }
 </script>
