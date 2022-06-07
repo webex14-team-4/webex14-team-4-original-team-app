@@ -1,23 +1,57 @@
 <template>
   <div class="login">
-    <form class="login_form">
+    <form class="login_form" @submit.prevent="signIn">
       <div class="login_id">
-        <div class="login_label">Name</div>
-        <input type="text" placeholder="id" />
+        <div class="login_label">Email</div>
+        <input type="email" placeholder="email" v-model="email" />
       </div>
       <div class="login_password">
         <div class="login_label">Password</div>
-        <input type="password" placeholder="password" />
+        <input type="password" placeholder="password" v-model="password" />
       </div>
-      <router-link to="/manager">
-        <input class="login_button" type="submit" value="SignUp" />
-      </router-link>
+      <!-- <router-link to="/manager"> -->
+      <input class="login_button" type="submit" />
+      <!-- </router-link> -->
     </form>
   </div>
+  {{ error.message }}
+  {{ error.code }}
 </template>
 
 <script>
-export default {}
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from "@/firebase"
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+      user: "",
+      error: {
+        code: "",
+        message: "",
+      },
+    }
+  },
+  methods: {
+    signIn() {
+      createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user
+          // ...
+          this.user = user
+        })
+        .catch((error) => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          // ..
+          this.error.code = errorCode
+          this.error.message = errorMessage
+        })
+    },
+  },
+}
 </script>
 
 <style>
