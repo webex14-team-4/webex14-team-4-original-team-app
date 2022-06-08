@@ -5,9 +5,10 @@
     <div class="manager_article">
       <h2>記事一覧</h2>
       <ArticleSectionVue
-        :title="article.title"
         v-for="article in articles"
         :key="article"
+        :title="article.title"
+        :id="article.id"
       />
     </div>
   </div>
@@ -40,9 +41,6 @@ export default {
 </script>
 
 <style>
-.manager_article > h2 {
-  text-align: left;
-}
 .manager_info {
   background-color: rgb(224, 222, 222);
   margin-bottom: 50px;
