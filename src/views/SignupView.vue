@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <h3>SignUp View</h3>
     <form class="login_form" @submit.prevent="signIn">
       <div class="login_id">
         <div class="login_label">Email</div>
@@ -9,9 +10,7 @@
         <div class="login_label">Password</div>
         <input type="password" placeholder="password" v-model="password" />
       </div>
-      <!-- <router-link to="/manager"> -->
       <input class="login_button" type="submit" />
-      <!-- </router-link> -->
     </form>
   </div>
   {{ error.message }}

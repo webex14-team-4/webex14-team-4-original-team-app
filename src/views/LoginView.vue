@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <h3>Login View</h3>
     <form class="login_form" @submit.prevent="login">
       <div class="login_id">
         <div class="login_label">Email</div>
@@ -9,9 +10,7 @@
         <div class="login_label">Password</div>
         <input type="password" placeholder="password" v-model="password" />
       </div>
-      <router-link to="/manager">
-        <input class="login_button" type="submit" />
-      </router-link>
+      <input class="login_button" type="submit" />
     </form>
   </div>
   {{ error.code }}
@@ -32,6 +31,7 @@ export default {
         message: "",
       },
       isLogin: false,
+      user: "",
     }
   },
   methods: {
@@ -43,6 +43,7 @@ export default {
           // ...
           if (user) {
             this.isLogin = true
+            this.user = user
           }
         })
         .catch((error) => {
