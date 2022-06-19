@@ -3,35 +3,35 @@
     <div class="home_image">
       <img alt="Image" src="" />
     </div>
-    <HomeSectionVue
+    <TopPageSectionVue
       v-for="(data, index) in section_datas"
       :key="data"
       :sectionObj="data"
       :index="index"
-    ></HomeSectionVue>
+    ></TopPageSectionVue>
   </div>
 </template>
 
 <script>
-import HomeSectionVue from "@/components/HomeSection.vue"
+import TopPageSectionVue from "@/components/TopPageSection.vue"
 
 export default {
-  name: "HomeView",
+  name: "TopPageSectionView",
   components: {
-    HomeSectionVue,
+    TopPageSectionVue,
   },
   data() {
     return {
       section_datas: [
         {
           title: "Explanation",
-          text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          image: "sample.jpg",
+          text: "AlgoLearnでは<br>アルゴリズムの実際のソートコードから<br>実践的な学習を行うことができます",
+          image: "algorithm.png",
         },
         {
           title: "How to use",
           text: "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-          image: "sample.jpg",
+          image: "pc.png",
         },
       ],
     }

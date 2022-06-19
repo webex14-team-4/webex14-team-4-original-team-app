@@ -1,8 +1,8 @@
 <template>
   <div :class="{ home_section: true, home_section_reverse: doReverse }">
     <div class="section_description">
-      <h2 class="section_title">{{ sectionObj.title }}</h2>
-      <div class="section_text">{{ sectionObj.text }}</div>
+      <!-- <h2 class="section_title">{{ sectionObj.title }}</h2> -->
+      <div class="section_text" v-html="sectionObj.text"></div>
     </div>
     <div class="section_image">
       <img :src="imagePath" :alt="sectionObj.image" />
@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     imagePath() {
-      return require(`@/assets/${this.sectionObj.image}`)
+      return require(`@/assets/TopPage/${this.sectionObj.image}`)
     },
     doReverse() {
       return this.index % 2 === 0
@@ -39,6 +39,7 @@ export default {
 .section_description {
   width: 45%;
   text-align: left;
+  justify-content: center;
 }
 .section_text {
   overflow-wrap: break-word;
