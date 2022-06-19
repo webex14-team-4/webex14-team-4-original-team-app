@@ -10,8 +10,6 @@
       >
         {{ menu.name }}
       </router-link>
-      <!-- <router-link class="link" to="">一覧</router-link>
-      <router-link class="link" to="/login">ログイン</router-link> -->
     </div>
   </div>
 </template>
@@ -21,32 +19,32 @@ export default {
   data() {
     return {
       headerMenus: {
-        "/": [
+        "": [
           { name: "一覧", link: "/index" },
           { name: "ログイン", link: "/login" },
         ],
-        "/login": [
+        login: [
           { name: "一覧", link: "/index" },
           { name: "サインアップ", link: "/signup" },
         ],
-        "/signup": [
+        signup: [
           { name: "一覧", link: "/index" },
           { name: "ログイン", link: "/login" },
         ],
-        "/manager": [
-          { name: "投稿", link: "/edit" },
+        manager: [
+          { name: "投稿", link: "/edit/new" },
           { name: "ログアウト", link: "/" },
         ],
-        "/edit": [
+        edit: [
           { name: "破棄", link: "/manager" },
           { name: "一時保存", link: "/manager" },
           { name: "保存", link: "/manager" },
         ],
-        "/index": [
+        index: [
           { name: "一覧", link: "/index" },
           { name: "ログイン", link: "/login" },
         ],
-        "/show": [
+        show: [
           { name: "一覧", link: "/index" },
           { name: "ログイン", link: "/login" },
         ],
@@ -55,7 +53,8 @@ export default {
   },
   computed: {
     menus() {
-      return this.headerMenus[this.$route.path]
+      const paths = this.$route.path.split("/")
+      return this.headerMenus[paths[1]]
     },
   },
 }

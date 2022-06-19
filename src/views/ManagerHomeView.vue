@@ -1,7 +1,9 @@
 <template>
   <div class="manager">
     <h1>管理者画面</h1>
-    <div class="manager_info">管理者の情報</div>
+    <div class="manager_info">
+      後続タスク：ログイン情報に基づいて管理者の情報
+    </div>
     <div class="manager_article">
       <h2>記事一覧</h2>
       <ArticleSectionVue

@@ -40,6 +40,7 @@ export default {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user
+          console.log(user)
           // ...
           if (user) {
             this.isLogin = true

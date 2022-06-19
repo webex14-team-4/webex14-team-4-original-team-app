@@ -15,10 +15,16 @@ import _ from "lodash"
 
 export default {
   name: "markDown",
+  props: {
+    mdText: {
+      type: String,
+      default: "## ここに入力するよ",
+    },
+  },
   data() {
     return {
-      markdownText: "# ここに入力するよ",
-      compiledText: marked("# ここに入力するよ"),
+      markdownText: this.mdText,
+      compiledText: marked(this.mdText),
     }
   },
   methods: {

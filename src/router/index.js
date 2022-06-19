@@ -9,6 +9,11 @@ import ArticleShowView from "../views/ArticleShowView.vue"
 
 const routes = [
   {
+    path: "/:path(.*)*",
+    name: "nothing",
+    redirect: "/",
+  },
+  {
     path: "/",
     name: "home",
     component: HomeView,
@@ -17,6 +22,8 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginView,
+    // 動的インポート -> アクセス時にimportすることで実行時間を短縮できる
+    // component: () => import("../views/LoginView.vue"),
   },
   {
     path: "/signup",
@@ -29,9 +36,10 @@ const routes = [
     component: ManagerHomeView,
   },
   {
-    path: "/edit",
+    path: "/edit/:aid",
     name: "edit",
     component: ManagerEditView,
+    props: true,
   },
   {
     path: "/index",

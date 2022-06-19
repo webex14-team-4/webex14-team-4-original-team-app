@@ -5,22 +5,18 @@
       <div class="atricle_basic_info">
         <div class="article_title">
           <label for="title">記事のタイトル</label>
-          <input type="text" id="title" value="dbから取得した値が入る" />
+          <input type="text" id="title" :value="article.title" />
         </div>
         <div class="article_category">
           <label for="category">記事のカテゴリー</label>
-          <select name="" id="category">
-            <option value="dbから取得した値が入る">
-              dbから取得した値が入る
-            </option>
-            <option value="dbから取得した値が入る">
-              dbから取得した値が入る
-            </option>
-          </select>
+          <input type="text" id="category" :value="article.category" />
+          <!-- <select name="" id="category">
+            <option :value="article.category">{{ article.category }}</option>
+          </select> -->
         </div>
       </div>
-      <MarkDownVue />
-      <AlgoViewerVue />
+      <MarkDownVue :mdText="article.mdText" />
+      <AlgoViewerVue :code="article.code" />
     </div>
   </div>
 </template>
@@ -29,10 +25,32 @@
 import MarkDownVue from "@/components/MarkDown.vue"
 import AlgoViewerVue from "@/components/AlgoViewer.vue"
 
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "@/firebase"
+
 export default {
   components: {
     MarkDownVue,
     AlgoViewerVue,
+  },
+  props: {
+    aid: {
+      type: String,
+      default: "new",
+    },
+  },
+  data() {
+    return {
+      article: {},
+    }
+  },
+  created() {
+    if (this.aid !== "new")
+      getDocs(collection(db, "tetsuya-test-article-db")).then((docs) => {
+        docs.forEach((doc) => {
+          if (doc.id === this.aid) this.article = { id: doc.id, ...doc.data() }
+        })
+      })
   },
 }
 </script>

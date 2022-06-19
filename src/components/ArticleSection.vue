@@ -2,7 +2,7 @@
   <div class="article_section">
     <div class="manager_article_title">{{ title }}</div>
     <div class="manager_article_edit_button">
-      <router-link class="link" to="/edit">編集</router-link>
+      <router-link class="link" :to="`/edit/${id}`">編集</router-link>
     </div>
     <div class="manager_article_delete_button" @click="delete_article">
       削除
@@ -12,6 +12,7 @@
 
 <script>
 import { db } from "@/firebase"
+import { doc, deleteDoc } from "firebase/firestore"
 
 export default {
   props: {
@@ -23,19 +24,12 @@ export default {
   },
   methods: {
     delete_article() {
-      db.collection("tetsuya-test-article-db")
-        .doc(this.id)
-        .delete()
-        .then(() => {
-          console.log("Document successfully deleted!")
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error)
-        })
+      deleteDoc(doc(db, "tetsuya-test-article-db", this.id))
+      this.redirect()
     },
-  },
-  created() {
-    console.log(this.id)
+    redirect() {
+      this.$router.go({ path: this.$router.currentRoute.path, force: true })
+    },
   },
 }
 </script>
