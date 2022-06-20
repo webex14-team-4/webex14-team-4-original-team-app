@@ -76,6 +76,7 @@ form {
   margin: 0 auto;
   border: 1px solid rgba(61, 61, 61, 1);
   border-radius: 20px;
+  padding-bottom: 30px;
 }
 .login-id,
 .login-password,
