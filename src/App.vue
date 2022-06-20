@@ -1,18 +1,29 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">Aboutttttt</router-link>
-  </nav>
+  <HeaderVue />
   <router-view />
+  <FooterVue />
 </template>
+
+<script>
+import HeaderVue from "./components/Header.vue"
+import FooterVue from "./components/Footer.vue"
+
+export default {
+  components: {
+    HeaderVue,
+    FooterVue,
+  },
+}
+</script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #2c3e50; */
+  margin: 0 300px;
 }
 
 nav {

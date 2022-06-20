@@ -1,20 +1,62 @@
 import { createRouter, createWebHistory } from "vue-router"
-import HomeView from "../views/HomeView.vue"
+import TopPageView from "../views/TopPageView.vue"
+
+import LoginView from "../views/LoginView.vue"
+import ManagerEditView from "../views/ManagerEditView.vue"
+import ManagerHomeView from "../views/ManagerHomeView.vue"
+import SignupView from "../views/SignupView.vue"
+import ArticleIndexView from "../views/ArticleIndexView.vue"
+import ArticleShowView from "../views/ArticleShowView.vue"
+import UserTopPageView from "../views/UserTopPageView.vue"
 
 const routes = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    path: "/:path(.*)*",
+    name: "nothing",
+    redirect: "/",
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/",
+    name: "home",
+    component: TopPageView,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginView,
+    // 動的インポート -> アクセス時にimportすることで実行時間を短縮できる
+    // component: () => import("../views/LoginView.vue"),
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: SignupView,
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: UserTopPageView,
+  },
+  {
+    path: "/manager",
+    name: "manager",
+    component: ManagerHomeView,
+  },
+  {
+    path: "/edit/:aid",
+    name: "edit",
+    component: ManagerEditView,
+    props: true,
+  },
+  {
+    path: "/index",
+    name: "index",
+    component: ArticleIndexView,
+  },
+  {
+    path: "/show",
+    name: "show",
+    component: ArticleShowView,
   },
 ]
 
