@@ -11,7 +11,7 @@
         <input type="password" class="login-input" v-model="password" />
       </div>
       <div class="login-submit">
-        <router-link to="/manager" class="login-btn">Login</router-link>
+        <router-link to="/user" class="login-btn algo-bg">Login</router-link>
       </div>
       <!-- <router-link to="/manager">
         <input class="login-btn" type="submit" value="Login" />
@@ -72,6 +72,7 @@ export default {
   text-align: center;
 }
 form {
+  background: rgba(217, 217, 217, 0.17);
   width: 500px;
   margin: 0 auto;
   border: 1px solid rgba(61, 61, 61, 1);
@@ -113,8 +114,6 @@ form {
   cursor: pointer;
   text-decoration: none;
   color: #fff;
-  background: rgba(0, 179, 236, 1);
-  border: 1px rgba(0, 179, 236, 1) solid;
 }
 .signup {
   margin-top: 40px;
@@ -142,5 +141,22 @@ form {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.algo-bg {
+  background: linear-gradient(
+    90deg,
+    #d182fd -2.77%,
+    #6ca7ff -2.77%,
+    #6ea6ff -2.76%,
+    #c686fd 88.86%,
+    #d182fd 101.92%,
+    #d381fd 101.93%,
+    #d481fd 101.94%,
+    #d581fd 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%
+  );
 }
 </style>

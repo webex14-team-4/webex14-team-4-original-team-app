@@ -7,6 +7,7 @@ import ManagerHomeView from "../views/ManagerHomeView.vue"
 import SignupView from "../views/SignupView.vue"
 import ArticleIndexView from "../views/ArticleIndexView.vue"
 import ArticleShowView from "../views/ArticleShowView.vue"
+import UserTopPageView from "../views/UserTopPageView.vue"
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/signup",
     name: "signup",
     component: SignupView,
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: UserTopPageView,
   },
   {
     path: "/manager",

@@ -6,14 +6,16 @@
         <p>Email</p>
         <input type="email" class="login-input" v-model="email" />
       </div>
+      <div class="login-username">
+        <p>Username</p>
+        <input type="name" class="login-input" v-model="password" />
+      </div>
       <div class="login-password">
         <p>Password</p>
         <input type="password" class="login-input" v-model="password" />
       </div>
       <div class="login-submit">
-        <router-link to="/manager" class="login-btn algo-bg"
-          >SignUp</router-link
-        >
+        <router-link to="/user" class="login-btn algo-bg">SignUp</router-link>
       </div>
     </form>
   </div>
@@ -72,6 +74,7 @@ form {
   padding-bottom: 30px;
 }
 .login-id,
+.login-username,
 .login-password,
 .login-submit {
   display: flex;
@@ -80,6 +83,7 @@ form {
   margin: 0 auto;
 }
 .login-id > p,
+.login-username > p,
 .login-password > p,
 .login-btn {
   margin: 20px 0 0;
@@ -88,7 +92,7 @@ form {
 .login-btn {
   width: 300px;
   height: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border-radius: 5px;
 }
 .login-input {
