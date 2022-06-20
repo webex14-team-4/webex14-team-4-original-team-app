@@ -82,7 +82,6 @@ export default {}
   );
   padding: 6px;
   border-radius: 30px;
-  width: 435px;
   margin: 0 auto;
 }
 .feature > div {
@@ -95,6 +94,7 @@ export default {}
   margin: 0 auto;
   width: 70%;
   height: 80%;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -105,8 +105,8 @@ export default {}
   display: flex;
 }
 .login > div {
-  margin: 0 auto;
-  font-size: 60px;
+  margin: 50px auto 0;
+  font-size: 46px;
 }
 
 /* AlgoLearn */
