@@ -10,10 +10,18 @@
       <div class="user-bookmark">
         <h3 class="under-line title">Saved article</h3>
         <div class="saved-article">
-          <div class="article under-line">Babble sort</div>
-          <div class="article under-line">Selection sort</div>
-          <div class="article under-line">Insert sort</div>
-          <div class="article under-line">Insert sort</div>
+          <router-link to="/show" class="article under-line"
+            >Babble sort</router-link
+          >
+          <router-link to="/show" class="article under-line"
+            >Selection sort</router-link
+          >
+          <router-link to="/show" class="article under-line"
+            >Insert sort</router-link
+          >
+          <router-link to="/show" class="article under-line"
+            >Merge sort</router-link
+          >
         </div>
       </div>
       <router-link to="/manager" class="btn">
@@ -70,6 +78,8 @@ export default {}
   text-align: center;
   border: 1px solid rgb(100, 100, 100);
   background: #fff;
+  text-decoration: none;
+  color: #000;
   transition: all 0.35s;
 }
 .article:hover {
