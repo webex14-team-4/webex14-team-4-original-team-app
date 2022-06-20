@@ -29,8 +29,8 @@
       <div class="login">
         <div>
           <p>
-            Login to <span class="algo-color algo-text">AlgoLearn </span>
-            <router-link to="/" class="btn algo-color">Login</router-link>
+            <router-link to="/login" class="btn algo-color">Login</router-link>
+            to <span class="algo-color algo-text">AlgoLearn </span>
           </p>
         </div>
       </div>
