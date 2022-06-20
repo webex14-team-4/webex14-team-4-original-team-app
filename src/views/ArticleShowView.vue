@@ -1,7 +1,10 @@
 <template>
   <div class="show">
     <div class="container">
-      <h2 class="title">バブルソート</h2>
+      <div class="title_contents">
+        <h2 class="title">バブルソート</h2>
+        <div class="bookmark"></div>
+      </div>
       <div class="overview">
         <div class="subtitle">概要</div>
         <p>

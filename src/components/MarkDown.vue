@@ -1,8 +1,10 @@
 <template>
   <div class="markdown">
-    <div class="markdown_editor">
-      <textarea v-model="markdownText" @input="compile"></textarea>
-    </div>
+    <textarea
+      class="markdown_editor"
+      v-model="markdownText"
+      @input="compile"
+    ></textarea>
     <div class="markdown_preview">
       <div v-html="compiledText"></div>
     </div>
@@ -39,21 +41,24 @@ export default {
 .markdown {
   display: flex;
   justify-content: space-between;
-  min-height: 500px;
+  min-height: 300px;
+}
+.markdown > * {
+  flex-grow: 1;
+  width: 45%;
 }
 .markdown_editor {
   width: 50%;
   text-align: left;
-}
-.markdown_editor textarea {
+  margin-right: 5px;
+  background: #fff;
+  border: none;
   resize: none;
-  border: 1px solid gray;
   outline: none;
-  min-width: 100%;
   min-height: 100%;
 }
 .markdown_preview {
-  width: 45%;
+  background: #fff;
   text-align: left;
 }
 </style>
