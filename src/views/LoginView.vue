@@ -1,18 +1,21 @@
 <template>
   <div class="login">
-    <h2 class="title">Login to <span class="algo-color">AlgoLearn</span></h2>
-    <form class="login_form" @submit.prevent="login">
-      <div class="login_id">
-        <div class="login_label">Email</div>
-        <input type="email" placeholder="email" v-model="email" />
+    <h3 class="title">Login to <span class="algo-color">AlgoLearn</span></h3>
+    <form class="login-form" @submit.prevent="login">
+      <div class="login-id">
+        <p>Email</p>
+        <input type="email" class="login-input" v-model="email" />
       </div>
-      <div class="login_password">
-        <div class="login_label">Password</div>
-        <input type="password" placeholder="password" v-model="password" />
+      <div class="login-password">
+        <p>Password</p>
+        <input type="password" class="login-input" v-model="password" />
       </div>
-      <router-link to="/manager">
-        <input class="login_button" type="submit" value="Login" />
-      </router-link>
+      <div class="login-submit">
+        <router-link to="/manager" class="login-btn">Login</router-link>
+      </div>
+      <!-- <router-link to="/manager">
+        <input class="login-btn" type="submit" value="Login" />
+      </router-link> -->
     </form>
     <h3 class="signup">
       If you don't have an account <br />
@@ -64,56 +67,59 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 400;
   text-align: center;
 }
-.signup {
-  font-size: 30px;
-  font-weight: 100;
-  text-align: center;
-}
 form {
+  width: 500px;
+  margin: 0 auto;
   border: 1px solid rgba(61, 61, 61, 1);
   border-radius: 20px;
 }
-form > div > input {
-  border: 1px #000 solid;
+.login-id,
+.login-password,
+.login-submit {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+.login-id > p,
+.login-password > p,
+.login-btn {
+  margin: 20px 0 0;
+}
+.login-input,
+.login-btn {
+  width: 300px;
+  height: 30px;
+  margin-bottom: 30px;
   border-radius: 5px;
+}
+.login-input {
+  border: 1px #000 solid;
   background: #fff;
 }
-form > div > input:active {
-  border: 1px rgba(4, 163, 214, 1) solid;
+.login-input:focus {
+  outline: none;
+  border: 2px rgba(4, 163, 214, 1) solid;
 }
-input {
-  display: block;
-}
-.login_id,
-.login_password {
-  /* display: flex;
-  justify-content: center;
-  height: 2rem;
-  line-height: 2rem; */
-}
-.login_id,
-.login_password,
-.login_button {
-  margin-bottom: 50px;
-}
-.login_label {
-  width: 100px;
-}
-.login_button {
-  border-style: none;
-  padding: 8px 50px;
-  border-radius: 10%;
+.login-btn {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
   cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(0, 179, 236, 1);
+  border: 1px rgba(0, 179, 236, 1) solid;
 }
-.login_button:hover {
-  background-color: rgb(180, 180, 180);
-}
-.login_form {
-  margin: 100px 0;
+.signup {
+  margin-top: 40px;
+  font-size: 25px;
+  font-weight: 100;
+  text-align: center;
 }
 
 /* AlgoLearn */
