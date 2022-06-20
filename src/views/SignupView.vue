@@ -2,13 +2,13 @@
   <div class="login">
     <h3 class="title">Sign up to <span class="algo-text">AlgoLearn</span></h3>
     <form class="login-form" @submit.prevent="signIn">
-      <div class="login-id">
-        <p>Email</p>
-        <input type="email" class="login-input" v-model="email" />
-      </div>
       <div class="login-username">
         <p>Username</p>
         <input type="name" class="login-input" v-model="password" />
+      </div>
+      <div class="login-id">
+        <p>Email</p>
+        <input type="email" class="login-input" v-model="email" />
       </div>
       <div class="login-password">
         <p>Password</p>
