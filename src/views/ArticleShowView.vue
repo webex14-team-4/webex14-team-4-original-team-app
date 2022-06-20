@@ -6,15 +6,19 @@
     </div>
     <div class="algorithm_overview">概要</div>
     <div class="algorithm_explanation">アルゴリズム解説</div>
-    <div class="algorithm_code_viewer">
-      <div class="code_viewer">コードが入る</div>
-      <div class="block_viewer">コードに対応したブロックのような図が入る</div>
-    </div>
+    <iframe v-bind:src="headUrl + kind" frameborder="0"></iframe>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      kind: "bubble-sort",
+      headUrl: "https://algorithm-visualizer.org/brute-force/",
+    }
+  },
+}
 </script>
 
 <style>
@@ -35,5 +39,10 @@ export default {}
   border: 5px solid rgb(36, 53, 184);
   margin: 0 20px;
   width: 40%;
+}
+
+iframe {
+  width: 100%;
+  height: 100vh;
 }
 </style>
