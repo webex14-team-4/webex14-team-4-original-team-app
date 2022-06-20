@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="user-bookmark">
-        <h3 class="under-line">Saved article</h3>
+        <h3 class="under-line title">Saved article</h3>
         <div class="saved-article">
           <div class="article under-line">Babble sort</div>
           <div class="article under-line">Selection sort</div>
@@ -16,7 +16,9 @@
           <div class="article under-line">Insert sort</div>
         </div>
       </div>
-      <div class="post-article">記事を投稿する</div>
+      <router-link to="/manager" class="btn">
+        <div class="post-article">記事を投稿する</div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -26,6 +28,9 @@ export default {}
 </script>
 
 <style scoped>
+.btn {
+  text-decoration: none;
+}
 .user-info > .basic-info {
   display: flex;
   justify-content: center;
@@ -44,10 +49,11 @@ export default {}
   width: 100px;
   margin-right: 50px;
 }
-.user-bookmark h3 {
+.title {
   font-weight: normal;
   display: inline-block;
-  margin: 40px 20px 20px;
+  margin: 40px 15px 20px;
+  padding: 0 5px;
 }
 .saved-article {
   display: flex;

@@ -2,10 +2,10 @@
   <div class="article_section">
     <div class="manager_article_title">{{ title }}</div>
     <div class="manager_article_edit_button">
-      <router-link class="link" :to="`/edit/${id}`">編集</router-link>
+      <router-link class="link" :to="`/edit/${id}`">edit</router-link>
     </div>
     <div class="manager_article_delete_button" @click="delete_article">
-      削除
+      delete
     </div>
   </div>
 </template>
@@ -45,17 +45,22 @@ export default {
   flex-grow: 1;
 }
 
+.manager_article_edit_button {
+  margin-right: 20px;
+}
+
 .manager_article_edit_button,
 .manager_article_delete_button {
+  font-size: 1.1rem;
   cursor: pointer;
-  width: 10%;
 }
 .link {
   text-decoration: none;
   color: black;
 }
 .manager_article_edit_button:hover,
+.link:hover,
 .manager_article_delete_button:hover {
-  background-color: aqua;
+  color: #d182fd;
 }
 </style>
