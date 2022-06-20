@@ -4,7 +4,7 @@
     <form class="login-form" @submit.prevent="signIn">
       <div class="login-username">
         <p>Username</p>
-        <input type="name" class="login-input" v-model="password" />
+        <input type="name" class="login-input" v-model="username" />
       </div>
       <div class="login-id">
         <p>Email</p>
@@ -15,23 +15,25 @@
         <input type="password" class="login-input" v-model="password" />
       </div>
       <div class="login-submit">
-        <router-link to="/user" class="login-btn algo-bg">SignUp</router-link>
+        <div class="login-btn algo-bg" @click="signup">SignUp</div>
       </div>
     </form>
   </div>
-  {{ error.message }}
-  {{ error.code }}
 </template>
 
 <script>
+import { auth, db } from "@/firebase"
+import { doc, setDoc } from "firebase/firestore"
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth } from "@/firebase"
+
 export default {
   data() {
     return {
+      username: "",
       email: "",
       password: "",
       user: "",
+      uid: "",
       error: {
         code: "",
         message: "",
@@ -39,21 +41,30 @@ export default {
     }
   },
   methods: {
-    signIn() {
+    signup() {
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user
-          // ...
           this.user = user
+          this.uid = user.uid
+          this.createUserAccount()
+          this.$router.push(`/user/${user.uid}`)
         })
         .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          // ..
-          this.error.code = errorCode
-          this.error.message = errorMessage
+          this.error.code = error.code
+          this.error.message = error.message
+          alert(this.error.code)
+          console.log(this.error.code)
+          console.log(this.error.message)
         })
+    },
+    createUserAccount() {
+      setDoc(doc(db, "acount", this.uid), {
+        name: this.username,
+        auth: "user",
+        bookmarks: [],
+      })
     },
   },
 }

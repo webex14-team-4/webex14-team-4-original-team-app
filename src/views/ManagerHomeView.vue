@@ -4,7 +4,7 @@
       <div class="manager-info">
         <div class="basic-info">
           <img class="manager-img" src="@/assets/account.png" alt="" />
-          <p class="manager-name">ユーザーネーム（管理者）</p>
+          <p class="manager-name">{{ user.name }}（管理者）</p>
         </div>
       </div>
       <div class="manager-article">
@@ -14,8 +14,9 @@
             class="article"
             v-for="article in articles"
             :key="article"
-            :title="article.title"
-            :id="article.id"
+            :name="article.name"
+            :aid="article.aid"
+            :uid="uid"
           />
         </div>
       </div>
@@ -32,15 +33,26 @@ export default {
   components: {
     ArticleSectionVue,
   },
+  props: {
+    uid: String,
+  },
   data() {
     return {
       articles: [],
+      user: {},
     }
   },
   created() {
-    getDocs(collection(db, "tetsuya-test-article-db")).then((docs) => {
+    getDocs(collection(db, "acount")).then((docs) => {
       docs.forEach((doc) => {
-        this.articles.push({ id: doc.id, ...doc.data() })
+        if (doc.id === this.uid) this.user = { uid: doc.id, ...doc.data() }
+      })
+    })
+    getDocs(collection(db, "article")).then((docs) => {
+      docs.forEach((doc) => {
+        if (doc.data().authorId === this.uid) {
+          this.articles.push({ aid: doc.id, ...doc.data() })
+        }
       })
     })
   },

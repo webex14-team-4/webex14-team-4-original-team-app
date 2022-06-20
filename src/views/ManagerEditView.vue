@@ -1,23 +1,30 @@
 <template>
   <div class="container">
     <div class="menu">
-      <router-link to="/manager" class="btn delete">delete</router-link>
+      <router-link :to="`/manager/${uid}`" class="btn delete"
+        >delete</router-link
+      >
       <div>
         <router-link to="/manager" class="btn temp-save"
           >下書き保存</router-link
         >
-        <router-link to="/manager" class="btn save">Save</router-link>
+        <router-link
+          :to="`/manager/${uid}`"
+          class="btn save"
+          @click="saveArticle"
+          >Save</router-link
+        >
       </div>
     </div>
     <div class="article_editor">
       <div class="basic-info">
         <div class="title">
           <label for="title">タイトル：</label>
-          <input type="text" id="title" :value="article.title" />
+          <input type="text" id="title" v-model="article.name" />
         </div>
         <div class="category">
           <label for="category">カテゴリ：</label>
-          <input type="text" id="category" :value="article.category" />
+          <input type="text" id="category" v-model="article.category" />
         </div>
       </div>
       <MarkDownVue class="md-edit" :mdText="article.mdText" />
@@ -30,7 +37,7 @@
 import MarkDownVue from "@/components/MarkDown.vue"
 import AlgoViewerVue from "@/components/AlgoViewer.vue"
 
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, doc, setDoc, addDoc } from "firebase/firestore"
 import { db } from "@/firebase"
 
 export default {
@@ -39,19 +46,43 @@ export default {
     AlgoViewerVue,
   },
   props: {
-    aid: {
+    aid_uid: {
       type: String,
       default: "new",
     },
   },
   data() {
     return {
+      aid: this.aid_uid.split("_")[0],
+      uid: this.aid_uid.split("_")[1],
       article: {},
     }
   },
+  methods: {
+    saveArticle() {
+      if (this.aid === "new") {
+        addDoc(collection(db, "article"), {
+          name: "xxx",
+          category: "sort",
+          mdText: "aaa",
+          code: "const i = 0",
+          authorId: this.uid,
+        })
+      } else {
+        setDoc(doc(db, "article", this.aid), {
+          aid: this.aid,
+          name: this.article.name,
+          category: this.article.category,
+          mdText: "aaa",
+          code: "const i = 0",
+          authorId: this.uid,
+        })
+      }
+    },
+  },
   created() {
     if (this.aid !== "new")
-      getDocs(collection(db, "tetsuya-test-article-db")).then((docs) => {
+      getDocs(collection(db, "article")).then((docs) => {
         docs.forEach((doc) => {
           if (doc.id === this.aid) this.article = { id: doc.id, ...doc.data() }
         })
