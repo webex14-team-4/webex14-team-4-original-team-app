@@ -88,7 +88,7 @@ export default {}
     rgba(209, 130, 253, 1) 100%
   );
   border-image-slice: 1;
-  padding-bottom: 30px;
+  padding: 0px 10px 30px;
   margin-bottom: 50px;
 }
 .code_contents {
