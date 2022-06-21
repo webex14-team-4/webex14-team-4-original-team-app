@@ -1,5 +1,7 @@
 <template>
-  <div class="copyright">© Febro in 2022</div>
+  <div class="copyright">
+    © 2022 Febro (Tetsuya Sato, Yuuki Hayashi, Haruto Shiibara)
+  </div>
 </template>
 
 <script>
@@ -9,8 +11,11 @@ export default {}
 <style>
 .copyright {
   border-top: 1px solid gray;
-  padding-top: 20px;
+  padding: 20px;
+
   text-align: center;
-  margin-top: 30px;
+  margin-top: 25px;
+  background-color: black;
+  color: antiquewhite;
 }
 </style>

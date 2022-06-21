@@ -1,6 +1,6 @@
 <template>
   <HeaderVue />
-  <router-view />
+  <router-view class="main" />
   <FooterVue />
 </template>
 
@@ -23,7 +23,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50; */
-  margin: 0 300px;
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -37,5 +38,9 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.main {
+  margin: 0 300px;
 }
 </style>
