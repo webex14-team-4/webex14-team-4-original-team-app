@@ -7,6 +7,9 @@
           <p class="manager-name">{{ user.name }}（管理者）</p>
         </div>
       </div>
+      <router-link :to="`/edit/new_${uid}`" class="btn link">
+        <div class="post-article">新規投稿</div>
+      </router-link>
       <div class="manager-article">
         <div>
           <h2 class="under-line title">記事一覧</h2>
@@ -60,6 +63,10 @@ export default {
 </script>
 
 <style scoped>
+.link {
+  text-decoration: none;
+  color: black;
+}
 .manager-info > .basic-info {
   display: flex;
   justify-content: center;
@@ -125,5 +132,30 @@ export default {
       #000000 101.95%
     );
   border-image-slice: 1;
+}
+.post-article {
+  background: linear-gradient(
+    90deg,
+    #d182fd -2.77%,
+    #6ca7ff -2.77%,
+    #6ea6ff -2.76%,
+    #c686fd 88.86%,
+    #d182fd 101.92%,
+    #d381fd 101.93%,
+    #d481fd 101.94%,
+    #d581fd 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%
+  );
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 25px;
+  width: 150px;
+  margin: 20px auto;
+  font-size: 20px;
+  cursor: pointer;
 }
 </style>

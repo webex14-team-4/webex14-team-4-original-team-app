@@ -23,6 +23,7 @@ export default {
       default: "## ここに入力するよ",
     },
   },
+  emits: ["update"],
   data() {
     return {
       markdownText: this.mdText,
@@ -32,6 +33,7 @@ export default {
   methods: {
     compile: _.debounce(function () {
       this.compiledText = marked(this.markdownText)
+      this.$emit("update", this.markdownText)
     }, 300),
   },
 }

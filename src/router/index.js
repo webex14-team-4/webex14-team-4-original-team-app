@@ -56,7 +56,7 @@ const routes = [
     component: ArticleIndexView,
   },
   {
-    path: "/show:aid",
+    path: "/show/:aid",
     name: "show",
     component: ArticleShowView,
     props: true,

@@ -22,8 +22,9 @@ export default {
   },
   methods: {
     delete_article() {
-      deleteDoc(doc(db, "tetsuya-test-article-db", this.aid))
-      this.redirect()
+      deleteDoc(doc(db, "article", this.aid)).then(() => {
+        this.redirect()
+      })
     },
     redirect() {
       this.$router.go({ path: this.$router.currentRoute.path, force: true })
