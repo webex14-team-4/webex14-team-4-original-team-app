@@ -5,11 +5,10 @@
         <h2 class="title">
           <span class="algo-color algo-text">Algorithm Index</span>
         </h2>
-        <div class="list">
-          <router-link to="/show" class="article">バブルソート</router-link>
-          <router-link to="/show" class="article">選択ソート</router-link>
-          <router-link to="/show" class="article">挿入ソート</router-link>
-          <router-link to="/show" class="article">マージソート</router-link>
+        <div class="list" v-for="article in articles" :key="article">
+          <router-link :to="`/show/${article.aid}`" class="article">
+            {{ article.name }}
+          </router-link>
         </div>
       </div>
       <div class="data">
@@ -25,7 +24,23 @@
 </template>
 
 <script>
-export default {}
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "@/firebase"
+
+export default {
+  data() {
+    return {
+      articles: [],
+    }
+  },
+  created() {
+    getDocs(collection(db, "article")).then((docs) => {
+      docs.forEach((doc) => {
+        this.articles.push({ aid: doc.id, ...doc.data() })
+      })
+    })
+  },
+}
 </script>
 
 <style scoped>

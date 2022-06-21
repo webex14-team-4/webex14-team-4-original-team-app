@@ -33,17 +33,19 @@ const routes = [
     component: SignupView,
   },
   {
-    path: "/user",
+    path: "/user/:uid",
     name: "user",
     component: UserTopPageView,
+    props: true,
   },
   {
-    path: "/manager",
+    path: "/manager/:uid",
     name: "manager",
     component: ManagerHomeView,
+    props: true,
   },
   {
-    path: "/edit/:aid",
+    path: "/edit/:aid_uid",
     name: "edit",
     component: ManagerEditView,
     props: true,
@@ -54,9 +56,10 @@ const routes = [
     component: ArticleIndexView,
   },
   {
-    path: "/show",
+    path: "/show/:aid",
     name: "show",
     component: ArticleShowView,
+    props: true,
   },
 ]
 

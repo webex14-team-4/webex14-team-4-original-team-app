@@ -1,8 +1,8 @@
 <template>
   <div class="article_section">
-    <div class="manager_article_title">{{ title }}</div>
+    <div class="manager_article_title">{{ name }}</div>
     <div class="manager_article_edit_button">
-      <router-link class="link" :to="`/edit/${id}`">edit</router-link>
+      <router-link class="link" :to="`/edit/${aid}_${uid}`">edit</router-link>
     </div>
     <div class="manager_article_delete_button" @click="delete_article">
       delete
@@ -16,16 +16,15 @@ import { doc, deleteDoc } from "firebase/firestore"
 
 export default {
   props: {
-    id: String,
-    title: String,
-    category: String,
-    mdText: String,
-    code: String,
+    aid: String,
+    name: String,
+    uid: String,
   },
   methods: {
     delete_article() {
-      deleteDoc(doc(db, "tetsuya-test-article-db", this.id))
-      this.redirect()
+      deleteDoc(doc(db, "article", this.aid)).then(() => {
+        this.redirect()
+      })
     },
     redirect() {
       this.$router.go({ path: this.$router.currentRoute.path, force: true })

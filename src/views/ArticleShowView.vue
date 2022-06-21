@@ -5,16 +5,17 @@
         <h2 class="title">バブルソート</h2>
         <div class="bookmark"></div>
       </div>
-      <div class="overview">
+      <!-- <div class="overview">
         <div class="subtitle">概要</div>
         <p>
           並び替える数列の中で大きい（または小さい）数字から順番に整列させていくアルゴリズム<br />
           大きな気泡（バブル）ほど水中を素早く浮上するようすから命名されている
         </p>
-      </div>
+      </div> -->
       <div class="explanation">
         <div class="subtitle">アルゴリズム解説</div>
-        <ul>
+        <div class="mdText" v-html="compiledText"></div>
+        <!-- <ul>
           <p>前提：左から右へ大きくなるように並び替えるとする</p>
           <li>step0. i=0 とする</li>
           <li>step1. 未整列の数列の i 番目の数字に着目する</li>
@@ -23,7 +24,7 @@
           <li>step4. step1~3 を i = 数列の長さ-1 まで繰り返す</li>
           <li>step5. step4 が終わったら、i=0 として、step1 に戻る</li>
           <li>step6. step1~5 を未整列の数字がなくなるまで繰り返す</li>
-        </ul>
+        </ul> -->
       </div>
       <div class="code_contents">
         <div class="code">コードが入る</div>
@@ -34,7 +35,35 @@
 </template>
 
 <script>
-export default {}
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "@/firebase"
+import { marked } from "marked"
+
+export default {
+  props: {
+    aid: String,
+  },
+  data() {
+    return {
+      article: {},
+    }
+  },
+  methods: {},
+  created() {
+    getDocs(collection(db, "article")).then((docs) => {
+      docs.forEach((doc) => {
+        if (this.aid === doc.data().aid)
+          this.article = { aid: doc.id, ...doc.data() }
+      })
+    })
+  },
+  computed: {
+    compiledText: function () {
+      const md = this.article.mdText
+      return md !== undefined ? marked(md) : ""
+    },
+  },
+}
 </script>
 
 <style scoped>

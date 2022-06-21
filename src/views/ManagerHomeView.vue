@@ -4,9 +4,12 @@
       <div class="manager-info">
         <div class="basic-info">
           <img class="manager-img" src="@/assets/account.png" alt="" />
-          <p class="manager-name">ユーザーネーム（管理者）</p>
+          <p class="manager-name">{{ user.name }}（管理者）</p>
         </div>
       </div>
+      <router-link :to="`/edit/new_${uid}`" class="btn link">
+        <div class="post-article">新規投稿</div>
+      </router-link>
       <div class="manager-article">
         <div>
           <h2 class="under-line title">記事一覧</h2>
@@ -14,8 +17,9 @@
             class="article"
             v-for="article in articles"
             :key="article"
-            :title="article.title"
-            :id="article.id"
+            :name="article.name"
+            :aid="article.aid"
+            :uid="uid"
           />
         </div>
       </div>
@@ -32,15 +36,26 @@ export default {
   components: {
     ArticleSectionVue,
   },
+  props: {
+    uid: String,
+  },
   data() {
     return {
       articles: [],
+      user: {},
     }
   },
   created() {
-    getDocs(collection(db, "tetsuya-test-article-db")).then((docs) => {
+    getDocs(collection(db, "acount")).then((docs) => {
       docs.forEach((doc) => {
-        this.articles.push({ id: doc.id, ...doc.data() })
+        if (doc.id === this.uid) this.user = { uid: doc.id, ...doc.data() }
+      })
+    })
+    getDocs(collection(db, "article")).then((docs) => {
+      docs.forEach((doc) => {
+        if (doc.data().authorId === this.uid) {
+          this.articles.push({ aid: doc.id, ...doc.data() })
+        }
       })
     })
   },
@@ -48,6 +63,10 @@ export default {
 </script>
 
 <style scoped>
+.link {
+  text-decoration: none;
+  color: black;
+}
 .manager-info > .basic-info {
   display: flex;
   justify-content: center;
@@ -113,5 +132,30 @@ export default {
       #000000 101.95%
     );
   border-image-slice: 1;
+}
+.post-article {
+  background: linear-gradient(
+    90deg,
+    #d182fd -2.77%,
+    #6ca7ff -2.77%,
+    #6ea6ff -2.76%,
+    #c686fd 88.86%,
+    #d182fd 101.92%,
+    #d381fd 101.93%,
+    #d481fd 101.94%,
+    #d581fd 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%
+  );
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 25px;
+  width: 150px;
+  margin: 20px auto;
+  font-size: 20px;
+  cursor: pointer;
 }
 </style>

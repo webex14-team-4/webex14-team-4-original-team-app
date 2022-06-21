@@ -11,19 +11,14 @@
         <input type="password" class="login-input" v-model="password" />
       </div>
       <div class="login-submit">
-        <router-link to="/user" class="login-btn algo-bg">Login</router-link>
+        <div class="login-btn algo-bg" @click="login">Login</div>
       </div>
-      <!-- <router-link to="/manager">
-        <input class="login-btn" type="submit" value="Login" />
-      </router-link> -->
     </form>
     <h3 class="signup">
       If you don't have an account <br />
-      click <router-link to="/" class="algo-color">here</router-link>
+      click <router-link to="/signup" class="algo-color">here</router-link>
     </h3>
   </div>
-  {{ error.code }}
-  {{ error.message }}
 </template>
 
 <script>
@@ -48,17 +43,17 @@ export default {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user
-          console.log(user)
-          // ...
           if (user) {
             this.isLogin = true
+            this.$router.push(`/user/${user.uid}`)
           }
         })
         .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          this.error.code = errorCode
-          this.error.message = errorMessage
+          this.error.code = error.code
+          this.error.message = error.message
+          alert(this.error.code)
+          console.log(this.error.code)
+          console.log(this.error.message)
         })
     },
   },
