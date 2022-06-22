@@ -26,15 +26,29 @@
         </ul>
       </div>
       <div class="code_contents">
-        <div class="code">コードが入る</div>
-        <div class="block">コードに対応したブロック</div>
+        <div class="algo-box">
+          <iframe v-bind:src="kind" frameborder="0"></iframe>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      iframe: "",
+      kind: "https://algorithm-visualizer.org/brute-force/bubble-sort",
+    }
+  },
+  mounted() {
+    document.querySelector("iframe").addEventListener("load", function () {
+      this.iframe = document.getElementsByTagName("iframe")
+      console.log(this.iframe[0])
+    })
+  },
+}
 </script>
 
 <style scoped>
@@ -111,7 +125,10 @@ export default {}
   );
 }
 .code_contents {
+  display: block;
   padding: 10px 10px;
+  height: 81.5vh;
+  width: 65.5vw;
 }
 .code_contents > * {
   /* margin: 0 20px; */
@@ -126,5 +143,20 @@ export default {}
 }
 .block {
   background: #fff;
+}
+
+.algo-box {
+  width: 80vw;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -4vh;
+  left: -16vw;
 }
 </style>
