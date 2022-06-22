@@ -31,7 +31,7 @@
 
 <template>
   <div class="header">
-    <h1 class="link subtitle algo-color">AlgoLearn</h1>
+    <router-link to="/" class="link subtitle algo-color">AlgoLearn</router-link>
     <div class="menu">
       <router-link
         class="link"
