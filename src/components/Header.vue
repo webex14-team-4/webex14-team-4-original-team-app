@@ -31,8 +31,29 @@
 
 <template>
   <div class="header">
-    <router-link to="/" class="link subtitle algo-color">AlgoLearn</router-link>
-    <div class="menu">
+    <div class="menu" v-if="path() === ''">
+      <router-link to="/" class="algo-color algo-text">AlgoLearn</router-link>
+      <router-link
+        class="link"
+        :to="menu.link"
+        v-for="menu in menus"
+        :key="menu"
+      >
+        {{ menu.name }}
+      </router-link>
+    </div>
+    <div class="login" v-else-if="path() === 'signup || login'">
+      <router-link
+        class="link"
+        :to="menu.link"
+        v-for="menu in menus"
+        :key="menu"
+      >
+        {{ menu.name }}
+      </router-link>
+    </div>
+    <div class="menu" v-else>
+      <router-link to="/" class="algo-color algo-text">AlgoLearn</router-link>
       <router-link
         class="link"
         :to="menu.link"
@@ -50,33 +71,35 @@ export default {
     return {
       headerMenus: {
         "": [
-          { name: "一覧", link: "/index" },
           { name: "ログイン", link: "/login" },
-        ],
-        login: [
-          { name: "一覧", link: "/index" },
           { name: "サインアップ", link: "/signup" },
         ],
-        signup: [
-          { name: "一覧", link: "/index" },
-          { name: "ログイン", link: "/login" },
-        ],
-        manager: [
-          { name: "投稿", link: "/edit/new" },
+        login: [],
+        signup: [],
+        user: [
+          { name: "ホーム", link: "/manager/:uid" },
+          { name: "一覧", link: "/user/:uid" },
           { name: "ログアウト", link: "/" },
         ],
         edit: [
-          { name: "破棄", link: "/manager" },
-          { name: "一時保存", link: "/manager" },
-          { name: "保存", link: "/manager" },
+          { name: "ホーム", link: "/manager/:uid" },
+          { name: "一覧", link: "/user/:uid" },
+          { name: "ログアウト", link: "/" },
         ],
         index: [
-          { name: "一覧", link: "/index" },
-          { name: "ログイン", link: "/login" },
+          { name: "ホーム", link: "/manager/:uid" },
+          { name: "一覧", link: "/user/:uid" },
+          { name: "ログアウト", link: "/" },
         ],
         show: [
-          { name: "一覧", link: "/index" },
-          { name: "ログイン", link: "/login" },
+          { name: "ホーム", link: "/manager/:uid" },
+          { name: "一覧", link: "/user/:uid" },
+          { name: "ログアウト", link: "/" },
+        ],
+        manager: [
+          { name: "ホーム", link: "/manager/:uid" },
+          { name: "一覧", link: "/user/:uid" },
+          { name: "ログアウト", link: "/" },
         ],
       },
     }
@@ -86,14 +109,15 @@ export default {
       /** 現在のパスを返します
        * 例：http://localhost:8080/index → index , http://localhost:8080/user/t5QaIsxhHHT0btDNyMMFJGFk2NL2 → user
        */
+      console.log(this.$route.path.split("/")[1])
       return this.$route.path.split("/")[1]
     },
   },
   computed: {
     menus() {
-      /** 現在のパスに対応したheaderMenusで定義されたヘッダーメニューの「名前」と「リンク」のObjectを返します
-       * 例：pathがindex →[{ name: "一覧", link: "/index" },{ name: "ログイン", link: "/login" },]
-       */
+      //     /** 現在のパスに対応したheaderMenusで定義されたヘッダーメニューの「名前」と「リンク」のObjectを返します
+      //      * 例：pathがindex →[{ name: "一覧", link: "/index" },{ name: "ログイン", link: "/login" },]
+      //      */
       return this.headerMenus[this.path()]
     },
   },
@@ -111,10 +135,53 @@ export default {
   font-size: 2rem;
 }
 .header .link {
-  text-decoration: none;
+  /* text-decoration: none;
   color: black;
-  font-weight: normal;
+  font-weight: normal; */
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 5px 20px;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(110, 166, 255, 1) 0%,
+    rgba(209, 130, 253, 1) 100%
+  );
 }
+
+.algo-color {
+  background: linear-gradient(
+    90deg,
+    #d182fd -2.77%,
+    #6ca7ff -2.77%,
+    #6ea6ff -2.76%,
+    #c686fd 88.86%,
+    #d182fd 101.92%,
+    #d381fd 101.93%,
+    #d481fd 101.94%,
+    #d581fd 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%,
+    #000000 101.95%
+  );
+}
+
+.algo-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.login {
+  border-top: 1px solid gray;
+  padding: 20px;
+
+  text-align: center;
+  margin-top: 25px;
+  background-color: black;
+  color: black;
+  transform: scaleX(200);
+}
+
 .menu {
   display: flex;
   justify-content: space-between;
