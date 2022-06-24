@@ -8,11 +8,14 @@
           >では<br />アルゴリズムの実際のソートコードから<br />実践的な学習を行うことができます
         </h2>
       </div>
+      <h3 class="algo-color algo-bg">AlgoLearnの使い方</h3>
       <div class="how-to-use">
         <div>
-          <p>1. 使い方の説明の短文</p>
-          <p>2. 使い方の説明の短文</p>
-          <p>3. 使い方の説明の短文</p>
+          <ul>
+            <li>1. 概要を読んで、アルゴリズムの大枠を掴む</li>
+            <li>2. 解説を読んで、より理論的に詳細まで租借</li>
+            <li>3. ソースコードと動作を見て、実践的に理解</li>
+          </ul>
         </div>
         <img src="@/assets/TopPage/pc.png" height="250px" alt="" />
       </div>
@@ -20,9 +23,9 @@
         <div>
           <h3 class="algo-color algo-bg">AlgoLearnの特徴</h3>
           <ul>
-            <li>xxx</li>
-            <li>xxxx</li>
-            <li>xxxxx</li>
+            <li>初心者向けの内容で分かりやすい！</li>
+            <li>フローだけでなく、実際のコードまで掲載！</li>
+            <li>実際のコードと動作を見て、視覚的に理解できる！</li>
           </ul>
         </div>
       </div>
@@ -44,6 +47,9 @@ export default {}
 
 <style scoped>
 /* common */
+ul {
+  list-style: none;
+}
 .container > * {
   margin-bottom: 50px;
 }
